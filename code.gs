@@ -7,6 +7,7 @@ function showDialog() {
    let currentRow = currentCell.getRow()
    let rangeValues = activeSheet.getRange(`A${currentRow}:D${currentRow}`).getValues()
    let [date, order, address, name] = rangeValues
+   // according to the docs, destructuring should work.  I'm suspecting maybe my "rangeValues" isn't actually returning an array. https://developers.google.com/apps-script/guides/v8-runtime#destructuring_assignments
    // let date = activeSheet.getCell(currentRow, 0).getValue() // "A" column of current row should contain the date
    // let selectionValue = activeSheet.getSelection().getCurrentCell().getValue()
    // let stringed = JSON.stringify(selection)
