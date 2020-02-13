@@ -6,7 +6,7 @@ function showDialog() {
    let selection = activeSheet.getSelection().getCurrentCell().getA1Notation()
    let selectionValue = activeSheet.getSelection().getCurrentCell().getValue()
    let stringed = JSON.stringify(selection)
-   Browser.msgBox(stringed + selectionValue);
+   Browser.msgBox(`${stringed}: ${selectionValue}`);
    //Ui.alert(
    //  'Please confirm',
    //  'Are you sure you want to continue?',
