@@ -5,13 +5,14 @@ function showDialog() {
    let activeSheet = SpreadsheetApp.getActiveSheet();
    let currentCell = activeSheet.getSelection().getCurrentCell()
    let currentRow = currentCell.getRow()
-   let rangeValues = activeSheet.getRange(`A${currentRow}:D${currentRow}`).getValues()
+   let rangeValues = activeSheet.getRange(`A${currentRow}:D${currentRow}`).getValues()[0] 
+   //getValues returned a nested array.  Need to access the actual array of the 4 values by accessing the [0] index of the first array.  This fixed the destructuring issue.
    let [date, order, address, name] = rangeValues
-   // according to the docs, destructuring should work.  I'm suspecting maybe my "rangeValues" isn't actually returning an array. https://developers.google.com/apps-script/guides/v8-runtime#destructuring_assignments
+   
    // let date = activeSheet.getCell(currentRow, 0).getValue() // "A" column of current row should contain the date
    // let selectionValue = activeSheet.getSelection().getCurrentCell().getValue()
    // let stringed = JSON.stringify(selection)
-   Browser.msgBox(`${date}`);
+   Browser.msgBox(`Date: ${date.toLocaleString()}`);
    //Ui.alert(
    //  'Please confirm',
    //  'Are you sure you want to continue?',
