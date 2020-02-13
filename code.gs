@@ -3,10 +3,14 @@
 // Test Sheet https://docs.google.com/spreadsheets/d/12I9CfDSGTjtcN0NvlXkTRgL4H-JxMs-_-8j7mlX26do/edit?usp=sharing
 function showDialog() {
    let activeSheet = SpreadsheetApp.getActiveSheet();
-   let selection = activeSheet.getSelection().getCurrentCell().getA1Notation()
-   let selectionValue = activeSheet.getSelection().getCurrentCell().getValue()
-   let stringed = JSON.stringify(selection)
-   Browser.msgBox(`${stringed}: ${selectionValue}`);
+   let currentCell = activeSheet.getSelection().getCurrentCell()
+   let currentRow = currentCell.getRow()
+   let rangeValues = activeSheet.getRange(`A${currentRow}:D${currentRow}`).getValues()
+   let [date, order, address, name] = rangeValues
+   // let date = activeSheet.getCell(currentRow, 0).getValue() // "A" column of current row should contain the date
+   // let selectionValue = activeSheet.getSelection().getCurrentCell().getValue()
+   // let stringed = JSON.stringify(selection)
+   Browser.msgBox(`${date}`);
    //Ui.alert(
    //  'Please confirm',
    //  'Are you sure you want to continue?',
